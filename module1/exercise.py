@@ -1,7 +1,5 @@
 from pyspark.sql import SparkSession
 
-spark = SparkSession.builder.appName("Modul1_Zadanie_Python").master("local[*]").getOrCreate()
-
 people = [
     ("Artur", "Kowalski", "65123012345", 62, "M", 12300),
     ("Anna", "Nowak", "65123012346", 58, "F", 10200),
@@ -13,11 +11,20 @@ people = [
     ("Maria", "Misiek", "65123012352", 15, "F", 14000),
 ]
 
-people_df = spark.createDataFrame(people, ["first_name", "last_name", "pesel", "age", "gender", "salary"])
+spark = SparkSession.builder\
+    .appName("fundament-sparka")\
+    .master("local[*]")\
+    .getOrCreate()
 
-people_df.show()
+print(spark)
 
-ile = people_df.count()
-people_df.select("last_name", "gender", "salary").show(ile)
+try:
+    people_df = spark.createDataFrame(people, ["first_name", "last_name", "pesel", "age", "gender", "salary"])
 
-spark.stop()
+    people_df.show()
+
+    ile = people_df.count()
+    people_df.select("last_name", "gender", "salary").show(ile)
+
+finally:
+    spark.stop()

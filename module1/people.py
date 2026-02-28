@@ -1,12 +1,5 @@
 from pyspark.sql import SparkSession
 
-spark = SparkSession.builder\
-    .appName("fundament-sparka")\
-    .master("local[*]")\
-    .getOrCreate()
-
-print(spark)
-
 people = [
     ("John", "Doe", 29, "Male"),
     ("Jane", "Doe", 30, "Female"),
@@ -19,9 +12,19 @@ people = [
     ("Jack", "Daniels", 37, "Male"),
 ]
 
-people_df = spark.createDataFrame(people, ["first_name", "last_name", "age", "gender"])
+spark = SparkSession.builder\
+    .appName("fundament-sparka")\
+    .master("local[*]")\
+    .getOrCreate()
 
-people_df.show()
-people_df.printSchema()
+print(spark)
 
-people_df.select("first_name", "last_name").show()
+try:
+    people_df = spark.createDataFrame(people, ["first_name", "last_name", "age", "gender"])
+
+    people_df.show()
+    people_df.printSchema()
+
+    people_df.select("first_name", "last_name").show()
+finally:
+    spark.stop()
