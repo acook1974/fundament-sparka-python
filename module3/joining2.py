@@ -1,0 +1,40 @@
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import count, col, collect_list
+
+spark = SparkSession.builder\
+    .appName("fundament-sparka")\
+    .master("local[*]")\
+    .getOrCreate()
+
+peopleData = [
+    ("1", "marek", "czuma", 28), ("2", "ania", "kowalska", 30), ("3", "magda", "nowak", 28),
+      ("4", "jan", "kowalski", 15), ("5", "jozef", "czuma", 25), ("6", "ignacy", "czuma", 35),
+      ("7", "laura", "moscicka", 68), ("8", "zuzanna", "birecka", 12), ("9", "roman", "kowalski", 45),
+      ("10", "marek", "kowalski", 68), ("11", "ignacy", "nowak", 43), ("12", "ania", "nowak", 33),
+      ("13", "laura", "czuma", 6), ("14", "karol", "birecki", 21), ("15", "karol", "nowak", 43),
+      ("16", "jan", "moscicki", 33), ("17", "jan", "birecki", 36), ("18", "andrzej", "kowalski", 82)
+]
+
+jobsData = [("programmer", 0), ("teacher", 18), ("senator", 30), ("president", 35)]
+
+try:
+
+    peopleDF = spark.createDataFrame(peopleData, ["id", "firstName", "lastName", "age"])
+    jobsDF = spark.createDataFrame(jobsData, ["job", "ageLimit"])
+
+    peopleWithJobsDF = peopleDF.join(jobsDF, peopleDF["age"] >= jobsDF["ageLimit"], "left")
+
+    cols = [field.name for field in peopleDF.schema.fields]
+    
+    peopleWithJobsDF.show()
+
+    peopleWithGroupedJobsDF = peopleWithJobsDF.groupBy("id", "firstName", "lastName", "age")\
+      .agg(collect_list(col("job")).alias("jobs"))
+    peopleWithGroupedJobs2 = peopleWithJobsDF.groupBy(*cols)\
+      .agg(collect_list(col("job")).alias("jobs"))
+
+    peopleWithGroupedJobsDF.show(truncate=False)
+    peopleWithGroupedJobs2.show(truncate=False)
+
+finally:
+    spark.stop()
