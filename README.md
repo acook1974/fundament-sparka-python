@@ -31,22 +31,22 @@ Projekt z materiałami i ćwiczeniami do kursu podstaw Apache Spark w Pythonie (
 
 ## Uruchomienie
 
-- **Podstawowy przykład (DataFrame):**
+- **Podstawowy przykład (DataFrame) – moduł 1:**
   ```bash
-  python people.py
+  python module1/people.py
   ```
 
-- **Ćwiczenie – Moduł 1:**
+- **Ćwiczenie – moduł 1:**
   ```bash
-  python exercise.py
+  python module1/exercise.py
   ```
 
 ## Zawartość
 
-| Plik          | Opis |
-|---------------|------|
-| `people.py`   | Wprowadzenie do SparkSession i DataFrame – tworzenie, wyświetlanie, select. |
-| `exercise.py` | Zadanie z modułu 1 – DataFrame z danymi osób (PESEL, wiek, płeć, wynagrodzenie). |
+| Ścieżka               | Opis |
+|------------------------|------|
+| `module1/people.py`   | Wprowadzenie do SparkSession i DataFrame – tworzenie, wyświetlanie, select. |
+| `module1/exercise.py` | Zadanie z modułu 1 – DataFrame z danymi osób (PESEL, wiek, płeć, wynagrodzenie). |
 
 ## Licencja
 
