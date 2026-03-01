@@ -63,6 +63,16 @@ python module3/exercise2.py
 python module3/exercise3.py
 ```
 
+### Moduł 4 – UDF i operacje na DataFrame
+
+```bash
+python module4/udfoperations_initials.py
+python module4/udfoperations_interest.py
+python module4/udfoperations_isadult.py
+python module4/exercise1.py
+python module4/exercise2.py
+```
+
 **Uwaga:** Niektóre skrypty korzystają z plików z katalogu `data/` (CSV). Upewnij się, że katalog `data/` z plikami źródłowymi jest dostępny.
 
 ## Zawartość
@@ -99,9 +109,19 @@ python module3/exercise3.py
 | `module3/exercise2.py`       | Ćwiczenie – Netflix (type, listed_in, regexp_extract). |
 | `module3/exercise3.py`       | Ćwiczenie – pizze Medium, avg/min/max ceny. |
 
+### Moduł 4
+
+| Ścieżka                            | Opis |
+|------------------------------------|------|
+| `module4/udfoperations_initials.py`| UDF – inicjały z imienia i nazwiska (np. „M.C.”), rejestracja i call_udf. |
+| `module4/udfoperations_interest.py` | UDF – kapitalizacja odsetek (kapitał, lata, stopa), kolumny 10/20/40/60 lat (money_saving.csv). |
+| `module4/udfoperations_isadult.py` | DataFrame.transform – funkcja isAdult dodająca kolumnę isAdult (wiek ≥ 18). |
+| `module4/exercise1.py`             | Ćwiczenie – Netflix: średnia długość opisu w wyrazach (wbudowane funkcje oraz UDF countWordsUDF). |
+| `module4/exercise2.py`             | Ćwiczenie – kapitalizacja z wkładem (UDF), money_saving.csv, kolumny na 10/20/40/60 lat. |
+
 ### Dane (`data/`)
 
-Pliki CSV używane w przykładach: `pizza_data.csv`, `pizza_data_half.csv`, `pizza_data_half2.csv`, `netflix_titles.csv` oraz inne w katalogu `data/`.
+Pliki CSV używane w przykładach: `pizza_data.csv`, `pizza_data_half.csv`, `pizza_data_half2.csv`, `netflix_titles.csv`, `money_saving.csv` oraz inne w katalogu `data/`.
 
 ## Licencja
 
